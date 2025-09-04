@@ -24,6 +24,21 @@ for i in l:
         will_rain = True 
         break
 if will_rain:
-    print("Bring an Umberlla") 
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body="It will rain today. Take your Umbrella",
+        from_="+16188449732",
+        to="+917994031462",
+    )
+    print(message.status)
+
 else:
-    print("No rain in the next few hours 🙂")
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body="It Wont Rain Today.",
+        from_="+16188449732",
+        to="+917994031462",
+    )
+    print(message.status)
