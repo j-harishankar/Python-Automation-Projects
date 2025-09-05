@@ -4,7 +4,7 @@
 
 # Python Automation Projects
 
-An automation suite built with Python that delivers **real-time stock market notifications** and **daily weather/rain alerts** directly to your phone using **Twilio SMS/WhatsApp integration**.
+An automation suite built with Python that delivers **real-time stock market notifications** and **daily weather/rain alerts** directly to your phone using **Twilio SMS integration**.
 
 This project is designed to demonstrate how different APIs can be combined for **useful, real-world automation**.
 
