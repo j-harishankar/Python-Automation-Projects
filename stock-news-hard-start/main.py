@@ -1,10 +1,11 @@
+import requests
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
-
+NEWS_API  = "815c69246e5c4afb954e0d917da3ba13"
 ## STEP 1: Use https://newsapi.org/docs/endpoints/everything
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 #HINT 1: Get the closing price for yesterday and the day before yesterday. Find the positive difference between the two prices. e.g. 40 - 20 = -20, but the positive difference is 20.
@@ -15,9 +16,20 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 ## STEP 2: Use https://newsapi.org/docs/endpoints/everything
 # Instead of printing ("Get News"), actually fetch the first 3 articles for the COMPANY_NAME. 
 #HINT 1: Think about using the Python Slice Operator
-
-
-
+parameters={
+    "q": COMPANY_NAME,
+    "apiKey": NEWS_API
+}
+top_3_l = []
+news_response = requests.get("https://newsapi.org/v2/everything",params=parameters)
+news_response.raise_for_status()
+news_data = news_response.json()
+for i in range(3):
+    content = news_data["articles"][i]["content"]
+    content = content.split('…')[0]    
+    top_3_l.append(content)    
+for j in top_3_l:
+    print(j,end="...\n")
 ## STEP 3: Use twilio.com/docs/sms/quickstart/python
 # Send a separate message with each article's title and description to your phone number. 
 #HINT 1: Consider using a List Comprehension.
